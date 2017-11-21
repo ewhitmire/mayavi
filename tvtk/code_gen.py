@@ -77,7 +77,7 @@ class TVTKGenerator:
         helper_gen = self.helper_gen
         wrap_gen = self.wrap_gen
         # Create an __init__.py file
-        with open(os.path.join(out_dir, '__init__.py'), 'w'):
+        with open(os.path.join(out_dir, '__init__.py'), 'w', encoding='utf-8):
             pass
 
         # Crete a vtk_version.py file that contains VTK build
@@ -88,11 +88,11 @@ class TVTKGenerator:
         code ="vtk_build_version = \'%s\'\n"%(vtk_version)
         code += "vtk_build_src_version = \'%s\'\n"%(vtk_src_version)
 
-        with open(os.path.join(out_dir, 'vtk_version.py'), 'w') as f:
+        with open(os.path.join(out_dir, 'vtk_version.py'), 'w', encoding='utf-8) as f:
             f.write(code)
 
         # Write the helper code header.
-        with open(os.path.join(out_dir, 'tvtk_helper.py'), 'w') as helper_file:
+        with open(os.path.join(out_dir, 'tvtk_helper.py'), 'w', encoding='utf-8) as helper_file:
             helper_gen.write_prelims(helper_file)
 
             # Write the wrapper files.
@@ -206,7 +206,7 @@ class TVTKGenerator:
         # The only reason this method is separate is to generate code
         # for an individual class when debugging.
         fname = camel2enthought(tvtk_name) + '.py'
-        out = open(os.path.join(self.out_dir, fname), 'w')
+        out = open(os.path.join(self.out_dir, fname), 'w', encoding='utf-8)
         self.wrap_gen.generate_code(node, out)
         out.close()
 
